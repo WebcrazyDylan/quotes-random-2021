@@ -14,23 +14,29 @@ function App() {
   }, []);
 
   const fetchData = async () => {
-    const themoviedb = await axios.create({
-      baseURL: "https://api.themoviedb.org/3"
-    });
-    const req1 = await themoviedb.get(requests.fetchTrending);
-    setMovie(
-      req1.data.results[Math.floor(Math.random() * req1.data.results.length)]
-    );
+    try {
+      const themoviedb = await axios.create({
+        baseURL: "https://api.themoviedb.org/3"
+      });
+      const req1 = await themoviedb.get(requests.fetchTrending);
+      setMovie(
+        req1.data.results[Math.floor(Math.random() * req1.data.results.length)]
+      );
+    } catch (error) {
+      console.error(error);
+    }
     // console.log(req1.data.results);
 
-    const favqs_quote = await axios.create({
-      baseURL: "https://favqs.com/api/qotd"
-    });
-    const req2 = await favqs_quote.get();
-    setQuote(req2.data.quote);
+    try {
+      const favqs_quote = await axios.create({
+        baseURL: "https://favqs.com/api/qotd"
+      });
+      const req2 = await favqs_quote.get();
+      setQuote(req2.data.quote);
+    } catch (error) {
+      console.error(error);
+    }
     // console.log(req2.data.quote);
-
-    return;
   };
 
   const truncate = (str, n) => {
@@ -50,7 +56,7 @@ function App() {
         >
           <div className="banner__contents">
             <h1 className="banner__title">
-              {movie?.title || movie?.name || movie?.original_name}
+              {movie?.title || movie?.original_title || movie?.name}
             </h1>
 
             <h1 className="banner__description">
