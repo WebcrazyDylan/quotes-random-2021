@@ -15,7 +15,7 @@ function App() {
 
   const fetchData = async () => {
     try {
-      const themoviedb = await axios.create({
+      const themoviedb = axios.create({
         baseURL: "https://api.themoviedb.org/3"
       });
       const req1 = await themoviedb.get(requests.fetchTrending);
@@ -28,7 +28,7 @@ function App() {
     // console.log(req1.data.results);
 
     try {
-      const favqs_quote = await axios.create({
+      const favqs_quote = axios.create({
         baseURL: "https://favqs.com/api/qotd"
       });
       const req2 = await favqs_quote.get();
