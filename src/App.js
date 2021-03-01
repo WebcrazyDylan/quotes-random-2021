@@ -60,7 +60,7 @@ function App() {
             </h1>
 
             <h1 className="banner__description">
-              {truncate(movie?.overview, 150)}
+              {truncate(movie?.overview, 500)}
             </h1>
           </div>
 
